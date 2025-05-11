@@ -1,7 +1,9 @@
-import { useRef, useState } from "react";
+import {  useContext, useRef, useState } from "react";
 import { BiMessageAdd } from "react-icons/bi";
+import { TodoItemsContext } from "./ItemsContext-Store";
 
-function AddTodo({ onNewItem }) {
+function AddTodo() {
+  const {addNewItem}=useContext(TodoItemsContext)
   const todoNameElement = useRef();
   const dueDateElement = useRef();
 
@@ -20,7 +22,7 @@ function AddTodo({ onNewItem }) {
 
     if (!todoName || !dueDate) return;
 
-    onNewItem(todoName, dueDate);
+    addNewItem(todoName, dueDate);
     todoNameElement.current.value = "";
     dueDateElement.current.value = "";
     setIsDisabled(true);
